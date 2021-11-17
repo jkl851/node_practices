@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mysite</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+<style>
+	@import "mysite.css";
+	ul, ol			{ list-style-type: none }
+
+	div#container	{ text-align:left; width:700px; margin:0 auto; background-color:#EEE }
+	div#content		{ float:right; width:580px; background-color:#fff }
+
+	#guestbook			{ margin:20px auto;	width:540px; }
+
+	#guestbook form, 
+	#guestbook table	{ width:100% }
+
+	#guestbook table,	
+	#guestbook table td { border:1px solid #333 }
+	#guestbook table td { padding:5px }
+
+	#guestbook ul		{ width:100%; margin-top:20px }
+	#guestbook ul li	{ width:100%; margin-top:10px }
+
+
+	#guestbook.delete-form	{ height:200px }
+	#guestbook.delete-form form {
+		width:300px;
+		padding:10px;
+		border:1px solid #666;
+		border-radius: 10px;
+		margin:50px auto;
+	}
+	#guestbook.delete-form a	{ display:block; margin:20px auto; width:110px }
+
+	#guestbook.delete-message p	{ padding:100px; height:50px; text-align:center }
+
+	#guestbook textarea#content	{ width: 100%; border:none; height: 100px; resize: none; outline: none; }
+</style>
+<body>
+	<div id="container">
+		<div id="content">
+			<div id="guestbook">
+				<form action="/add" method="post">
+					<table>
+						<tr>
+							<td>이름</td><td><input type="text" name="name"></td>
+							<td>비밀번호</td><td><input type="password" name="password"></td>
+						</tr>
+						<tr>
+							<td colspan=4><textarea name="message" id="content"></textarea></td>
+						</tr>
+						<tr>
+							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+						</tr>
+					</table>
+				</form>
+				<ul>
+					<%
+						var count = list.length
+						var index = count -1
+						for(let i = 0; i < list.length; i++) {
+							const vo = list[index-i]
+					%>
+						<li>
+							<table>
+								<tr>
+									<td><%= count - i  %></td>
+									<td><%= vo.name %></td>
+									<td><%= vo.regDate %></td>
+									<td><a href="/delete?no=<%= vo.no %>">삭제</a></td>
+								</tr>
+								<tr>
+									<td colspan=4>
+										<%= vo.message %>
+									</td>
+								</tr>
+							</table>
+							<br>
+						</li>
+					<%
+						}
+					%>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
