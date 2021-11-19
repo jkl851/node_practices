@@ -8,7 +8,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 
 // Import Mapping Object 
 const User = require('./User')(sequelize);
-// const Guestbook = require('./Guestbook')(sequelize);
+const Guestbook = require('./Guestbook')(sequelize);
 // const Board = require('./Board')(sequelize);
 
 // DB에 반영(DDL)

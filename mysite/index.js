@@ -30,7 +30,6 @@ const application = express()
 
     // 4-4. static resources
     .use(express.static(path.join(__dirname, process.env.STATIC_RESOURCES_DIRECTORY)))
-                      // application/json
     // 4-5. view engine setup
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs');
